@@ -1,9 +1,9 @@
 ###Variables generales
 variable "ec2_instances" {
-  description = "Lista de las instancias EC2 a monitorear"
+  description = "Lista de Instance IDs de EC2 a monitorear"
   type        = list(string)
-  default     = []
 }
+
 
 variable "project" {
   description = "Nombre del proyecto"
