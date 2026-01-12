@@ -1,6 +1,6 @@
 ###Variables generales
-variable "ec2_instance_ids" {
-  description = "Lista de IDs de las instancias EC2 a monitorear"
+variable "ec2_instances" {
+  description = "Lista de las instancias EC2 a monitorear"
   type        = list(string)
   default     = []
 }
