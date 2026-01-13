@@ -28,19 +28,19 @@ variable "environment" {
 variable "cpu_utilization_threshold" {
   description = "Umbral de utilización de CPU para activar la alarma"
   type        = number
-  default     = 80
+  default     = 30
 }
 
 ###Variable de umbral de memoria
 variable "memory_utilization_threshold" {
   description = "Umbral de utilización de memoria para activar la alarma"
   type        = number
-  default     = 80
+  default     = 20
 }
 
 ###Variable de umbral de disco
 variable "disk_utilization_threshold" {
   description = "Umbral de utilización de disco para activar la alarma"
   type        = number
-  default     = 80
+  default     = 10
 }
