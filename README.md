@@ -10,4 +10,6 @@ module "ec2_monitoring" {
   ec2_instances     = var.ec2_instances
   project           = var.project
   environment       = var.environment
+
+  sns_topic_arn     = var.sns_topic_arn
 }
