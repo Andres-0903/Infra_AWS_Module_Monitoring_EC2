@@ -4,6 +4,11 @@ variable "ec2_instances" {
   type        = list(string)
 }
 
+variable "sns_topic_arn" {
+  description = "SNS topic arn"
+  type        = list(string)
+}
+
 
 variable "project" {
   description = "Nombre del proyecto"
