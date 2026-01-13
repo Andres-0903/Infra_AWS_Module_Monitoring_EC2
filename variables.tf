@@ -1,7 +1,9 @@
 ###Variables generales
 variable "ec2_instances" {
-  description = "Lista de Instance IDs de EC2 a monitorear"
-  type        = list(string)
+  description = "Lista de Instance EC2 a monitorear"
+  type = list(object({
+    id = string
+  }))
 }
 
 variable "sns_topic_arn" {

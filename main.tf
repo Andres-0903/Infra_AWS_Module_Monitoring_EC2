@@ -14,7 +14,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
   alarm_description   = "Alarm when CPU utilization exceeds"
 
   dimensions = {
-    InstanceId = each.value
+    InstanceId = each.value.id
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
   alarm_description = "Memory utilization > ${var.memory_utilization_threshold}%"
 
   dimensions = {
-    InstanceId = each.value
+    InstanceId = each.value.id
   }
 }
 
@@ -60,6 +60,6 @@ resource "aws_cloudwatch_metric_alarm" "ec2_disk_utilization_high" {
   alarm_description = "Disk utilization > ${var.disk_utilization_threshold}%"
 
   dimensions = {
-    InstanceId = each.value
+    InstanceId = each.value.id
   }
 }
