@@ -41,9 +41,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "ec2_disk_utilization_high" {
-  for_each = {
-    for i in var.ec2_instances : i.id => i
-  }
+  for_each            = var.ec2_instances
   alarm_name          = "EC2_Disk_Utilization_High-${var.project}-${var.environment}-${each.key}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 2
