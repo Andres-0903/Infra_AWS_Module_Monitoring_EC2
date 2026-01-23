@@ -1,7 +1,7 @@
 ###Variables generales
 variable "ec2_instances" {
   description = "Lista de Instance EC2 a monitorear"
-  type = list(object({
+  type = map(object({
     id = string
   }))
 }

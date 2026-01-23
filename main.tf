@@ -1,8 +1,6 @@
 ###Meticas para cada una de las instancias EC2.
 resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
-  for_each = {
-    for i in var.ec2_instances : i.id => i
-  }
+  for_each            = var.ec2_instances
   alarm_name          = "EC2_CPU_Utilization_High_-${var.project}-${var.environment}-${each.key}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 2
@@ -21,9 +19,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
-  for_each = {
-    for i in var.ec2_instances : i.id => i
-  }
+  for_each            = var.ec2_instances
   alarm_name          = "EC2_Memory_Utilization_High-${var.project}-${var.environment}-${each.key}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 2
