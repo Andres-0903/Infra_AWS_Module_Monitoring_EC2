@@ -19,6 +19,10 @@ resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
   dimensions = {
     InstanceId = each.value.id
   }
+
+  alarm_actions             = var.sns_topic_arn
+  ok_actions                = var.sns_topic_arn
+  insufficient_data_actions = []
 }
 
 resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
@@ -41,6 +45,11 @@ resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
   dimensions = {
     InstanceId = each.value.id
   }
+
+  alarm_actions             = var.sns_topic_arn
+  ok_actions                = var.sns_topic_arn
+  insufficient_data_actions = []
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "ec2_disk_utilization_high" {
@@ -63,4 +72,8 @@ resource "aws_cloudwatch_metric_alarm" "ec2_disk_utilization_high" {
   dimensions = {
     InstanceId = each.value.id
   }
+
+  alarm_actions             = var.sns_topic_arn
+  ok_actions                = var.sns_topic_arn
+  insufficient_data_actions = []
 }
