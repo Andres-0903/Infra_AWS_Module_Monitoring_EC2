@@ -2,7 +2,7 @@
 variable "ec2_instances" {
   description = "Lista de Instance EC2 a monitorear"
   type = map(object({
-    id = string
+    Instance = string
   }))
 }
 

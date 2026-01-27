@@ -17,7 +17,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
   })
 
   dimensions = {
-    InstanceId = aws_instance.public_instances[each.key].id
+    InstanceId = each.value.instance.id
   }
 }
 
