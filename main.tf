@@ -7,7 +7,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
   period              = var.cpu_utilization_period
-  statistic           = "Average"
+  statistic           = "Maximum"
   threshold           = var.cpu_utilization_threshold
   treat_missing_data  = "notBreaching"
   alarm_description   = "Alarm when CPU utilization exceeds"
@@ -17,7 +17,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
   })
 
   dimensions = {
-    InstanceId = each.key
+    InstanceId = each.value.instance_id
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
   metric_name         = "mem_used_percent"
   namespace           = "CWAgent"
   period              = var.memory_utilization_period
-  statistic           = "Average"
+  statistic           = "Maximum"
   threshold           = var.memory_utilization_threshold
   treat_missing_data  = "notBreaching"
   alarm_description   = "Memory utilization > ${var.memory_utilization_threshold}%"
@@ -39,7 +39,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
   })
 
   dimensions = {
-    InstanceId = each.key
+    InstanceId = each.value.instance_id
   }
 }
 
@@ -51,7 +51,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_disk_utilization_high" {
   metric_name         = "disk_used_percent"
   namespace           = "CWAgent"
   period              = var.disk_utilization_period
-  statistic           = "Average"
+  statistic           = "Maximum"
   threshold           = var.disk_utilization_threshold
   treat_missing_data  = "notBreaching"
   alarm_description   = "Disk utilization > ${var.disk_utilization_threshold}%"
@@ -61,6 +61,6 @@ resource "aws_cloudwatch_metric_alarm" "ec2_disk_utilization_high" {
   })
 
   dimensions = {
-    InstanceId = each.key
+    InstanceId = each.value.instance_id
   }
 }
