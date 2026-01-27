@@ -17,7 +17,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
   })
 
   dimensions = {
-    InstanceId = each.value.Instance
+    InstanceId = each.value.id
   }
 }
 
@@ -39,7 +39,7 @@ resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
   })
 
   dimensions = {
-    InstanceId = each.value.Instance
+    InstanceId = each.value.id
   }
 }
 
@@ -61,6 +61,6 @@ resource "aws_cloudwatch_metric_alarm" "ec2_disk_utilization_high" {
   })
 
   dimensions = {
-    InstanceId = each.value.Instance
+    InstanceId = each.value.id
   }
 }
