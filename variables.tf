@@ -46,11 +46,6 @@ variable "instance_tags" {
   default     = {}
 }
 
-variable "instance_tags" {
-  description = "Tags por instancia/servicio; la key debe coincidir con ec2_instances"
-  type        = map(map(string))
-  default     = {}
-}
 
 ########################cpu_utilization_high##########
 variable "cpu_utilization_evaluation_periods" {
