@@ -35,6 +35,17 @@ variable "purpose" {
   default     = "Monitoring"
 }
 
+variable "tags_generales" {
+  description = "Tags generales a aplicar a todos los recursos"
+  type        = map(string)
+  default = {
+    Project     = "Andres-Monitioreo"
+    Environment = "Dev"
+    Service     = "EC2"
+    Purpose     = "Monitoring"
+  }
+
+}
 ########################cpu_utilization_high##########
 variable "cpu_utilization_evaluation_periods" {
   description = "Número de períodos de evaluación para la alarma de alta utilización de CPU"
