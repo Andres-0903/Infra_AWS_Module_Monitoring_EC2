@@ -12,13 +12,15 @@ resource "aws_cloudwatch_metric_alarm" "ec2_cpu_utilization_high" {
   treat_missing_data  = "notBreaching"
   alarm_description   = "Alarm when CPU utilization exceeds"
 
+
   tags = merge(
-    var.tags_generales,
-    each.value.tags,
+    var.resource_tags,                       # globales (los del tfvars)
+    lookup(var.instance_tags, each.key, {}), # específicos por servicio/instancia (MongoDB, etc.)
     {
-      Name       = "${each.value.tags["Name"]}"
+      Name       = lookup(lookup(var.instance_tags, each.key, {}), "Name", var.name_service)
       AlarmLabel = "${var.project}-${var.name_service}-CPUUtilization-${each.key}-${var.environment}"
-  })
+    }
+  )
 
   dimensions = {
     InstanceId = each.value.id
@@ -43,12 +45,13 @@ resource "aws_cloudwatch_metric_alarm" "ec2_memory_utilization_high" {
   alarm_description   = "Memory utilization > ${var.memory_utilization_threshold}%"
 
   tags = merge(
-    var.tags_generales,
-    each.value.tags,
+    var.resource_tags,                       # globales (los del tfvars)
+    lookup(var.instance_tags, each.key, {}), # específicos por servicio/instancia (MongoDB, etc.)
     {
-      Name       = "${each.value.tags["Name"]}"
+      Name       = lookup(lookup(var.instance_tags, each.key, {}), "Name", var.name_service)
       AlarmLabel = "${var.project}-${var.name_service}-MemoryUtilization-${each.key}-${var.environment}"
-  })
+    }
+  )
 
   dimensions = {
     InstanceId = each.value.id
@@ -74,12 +77,13 @@ resource "aws_cloudwatch_metric_alarm" "ec2_disk_utilization_high" {
   alarm_description   = "Disk utilization > ${var.disk_utilization_threshold}%"
 
   tags = merge(
-    var.tags_generales,
-    each.value.tags,
+    var.resource_tags,                       # globales (los del tfvars)
+    lookup(var.instance_tags, each.key, {}), # específicos por servicio/instancia (MongoDB, etc.)
     {
-      Name       = "${each.value.tags["Name"]}"
+      Name       = lookup(lookup(var.instance_tags, each.key, {}), "Name", var.name_service)
       AlarmLabel = "${var.project}-${var.name_service}-DiskUtilization-${each.key}-${var.environment}"
-  })
+    }
+  )
 
   dimensions = {
     InstanceId = each.value.id
